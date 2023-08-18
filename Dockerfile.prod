@@ -1,0 +1,40 @@
+FROM node:alpine AS builder
+
+# base image. provides environment/dependies/platform for local code to run on server side.
+# refer to base images info.png 
+# used node:14 for my local react.js app. for building and running.
+# running container will have node installed. you can run node commands.
+
+RUN mkdir -p /home/myappinsidecontainer
+# makes dir INSIDE CONTAINER. also makes parent dir HOME if not available. (-p)
+# excutes linux commands INSIDE CONTAIENR.
+
+WORKDIR /home/myappinsidecontainer
+# all upcoming commands will be run from inside this directory. this is ref location.
+
+COPY ./package.json .
+# package.josn contains info about all app-specific-dependencies which will be downloaded and installed using npm install.
+
+RUN npm install
+# can only be run where package.json is present (currently WORKDIR)
+
+COPY . .
+# copy everything in this current host directory where dockerfile is located. and paste in WORKDIR
+
+RUN npm run build 
+# build code and make artifacts and place in 'build' folder inside WORKDIR.
+
+FROM nginx:latest AS production
+
+COPY --from=builder /home/myappinsidecontainer/build /usr/share/nginx/html
+#RUN sed -i 's/listen 80;/listen 81;/' /etc/nginx/conf.d/default.conf
+#RUN sed -i 's/listen  [::]:80;/listen  [::]:81;/' /etc/nginx/conf.d/default.conf
+#tried these commands to change port 80 of nginx to port 81. 
+#failed because no 'sed' or vim or nano editors inside container. 
+
+EXPOSE 80
+# no need to specify if we already know that nginx inside container uses default port 80.
+# in docker run command jus use -p hostport:80 and will work. 
+
+CMD ["nginx","-g","daemon off;"]
+# CMD command to pass parameters as list to entry point. 
