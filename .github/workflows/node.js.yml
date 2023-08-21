@@ -16,6 +16,12 @@ jobs:
       uses: actions/setup-node@v3.8.1
       with:
         node-version: 14
-    
+
     - name: docker test
       run: docker --version
+
+    - name: npm dependencies installations
+      run: npm install
+
+    - name: npm  build package
+      run: npm run build
