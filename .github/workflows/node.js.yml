@@ -27,4 +27,4 @@ jobs:
       run: npm run build
 
     - name: build dockerfile
-      run: docker build -t -f Dockerfile.dev .
+      run: docker build -t reactappimage:1.0 -f Dockerfile.prod .
