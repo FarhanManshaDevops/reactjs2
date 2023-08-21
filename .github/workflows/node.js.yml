@@ -25,3 +25,6 @@ jobs:
 
     - name: npm  build package
       run: npm run build
+
+    - name: build dockerfile
+      run: docker build -t -f Dockerfile.dev .
