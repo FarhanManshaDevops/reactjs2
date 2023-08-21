@@ -1,0 +1,21 @@
+name: react-js app pipeline
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  react-app-cicd:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: checkout
+      uses: actions/checkout@v1
+
+    - name: node install
+      uses: actions/setup-node@v3.8.1
+      with:
+        node-version: 14
+    
+    - name: docker test
+      run: docker --version
