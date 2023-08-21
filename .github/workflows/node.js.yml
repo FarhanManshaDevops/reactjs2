@@ -36,5 +36,6 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: push image to dockerhub 
-      run: docker tag reactappimage:1.0 farhanmansha/dockerrepo:16
+      run: | 
+           docker tag reactappimage:1.0 farhanmansha/dockerrepo:16
            docker push farhanmansha/dockerrepo:16
