@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          farhan mansha here  now never new build ,
+          hamza bhai the great devops
         </a>
       </header>
     </div>
