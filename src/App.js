@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          hamza bhai the great devops txcel
+          txcel
         </a>
       </header>
     </div>
