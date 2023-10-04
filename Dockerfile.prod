@@ -4,6 +4,7 @@ FROM node:alpine AS builder
 # refer to base images info.png 
 # used node:14 for my local react.js app. for building and running.
 # running container will have node installed. you can run node commands.
+# none
 
 RUN mkdir -p /home/myappinsidecontainer
 # makes dir INSIDE CONTAINER. also makes parent dir HOME if not available. (-p)
